@@ -1,0 +1,29 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+with open("opt-pro1-M062X-cc-pVTZ.log") as f:
+    lines = f.readlines()
+        
+Freq = []
+Int = []
+
+num_lines = len(lines) - 1
+for i in range(num_lines):
+    line = lines[i]
+    if "IR SPECTRUM" in line:
+        break 
+
+for j in range(i + 6, i + 80):
+    freq = float(lines[j].split()[1])
+    int = float(lines[j].split()[3])
+
+    print(freq)
+    print(int)
+
+    Freq.append(freq)
+    Int.append(int)
+        
+
+plt.plot(Freq, Int, "-")
+plt.show()
+        
